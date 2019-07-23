@@ -1,2 +1,72 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<nav class="nav-left">Bookers</nav>
+			<nav>
+				<ul class="right">
+					<li>Home</li>
+					<li>User</li>
+					<li>Books</li>
+					<li>logout</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<h1>show.html..books</h1>
+	<div class="container">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+			<%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg') %>
+			<table>
+				<tbody>
+					<tr>
+					  <th>name</th>
+					  <th class="profile-name">
+					  	<%= @user.name %>
+					  </th>
+					</tr>
+					<tr>
+					  <th>introduction</th>
+					  <th><%= @user.introduction %></th>
+					</tr>
+				</tbody>
+			</table>
+				<%= link_to '編集', edit_user_path(@user.id) %>
+				<div class="post">
+					<h2>New book</h2>
+					<%= form_for(@book) do |f| %>
+					 <p>Title</p>
+					  <%= f.text_field :title %>
+					 <p>Opinion</p>
+					  <%= f.text_area :body %>
+					  <%= f.submit 'Create Book' %>
+					<% end %>
+				</div>
+		</div>
+		<div class="col-xs-9">
+			<h2>Book details</h2>
+			<table>
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Opinion</th>
+				</tr>
+				 <tr>
+					<td><%= attachment_image_tag(@user, :profile_image, :fill, 20, 20, format: 'jpeg') %></td>
+					<td><%= @book.title %></td>
+					<td><%= @book.body %></td>
+					<td><%= link_to 'Edit', edit_book_path(@book.id) %></td>
+					<td><%= link_to 'destroy', book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+				 </tr>
+				
+			</table>
+		</div>
+	</div>
+</body>
+</html>

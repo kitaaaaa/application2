@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+			<%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg') %>
+			<table>
+				<tbody>
+					<tr>
+					  <th>name</th>
+					  <th class="profile-name">
+					  	<%= @user.name %>
+					  </th>
+					</tr>
+					<tr>
+					  <th>introduction</th>
+					  <th><%= @user.introduction %></th>
+					</tr>
+				</tbody>
+			</table>
+				<%= link_to '編集', edit_user_path(@user.id) %>
+				<div class="post">
+					<h2>New book</h2>
+					<%= form_for(@book) do |f| %>
+					 <p>Title</p>
+					  <%= f.text_field :title %>
+					 <p>Opinion</p>
+					  <%= f.text_area :body %>
+					  <%= f.submit 'Create Book' %>
+					<% end %>
+				</div>
+		</div>
+		<div class="col-xs-9">
+			<h2>Users</h2>
+		</div>
+	</div>
+</body>
+</html>
