@@ -10,14 +10,14 @@
 			<nav class="nav-left">Bookers</nav>
 			<nav>
 				<ul class="right">
-					<li>Home</li>
-					<li>User</li>
-					<li>Books</li>
-					<li>logout</li>
+					<li><%= link_to 'Home', user_path(@user.id) %></li>
+					<li><%= link_to 'Users', users_path %></li>
+					<li><%= link_to 'Books', books_path %></li>
+					<li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
 				</ul>
 			</nav>
 		</div>
-	</header>
+	</header>>
 	<div class="container">
 		<div class="col-xs-3">
 			<h2>User info</h2>
@@ -36,7 +36,7 @@
 					</tr>
 				</tbody>
 			</table>
-				<%= link_to '編集', edit_user_path(@user.id) %>
+				<%= link_to '編集', edit_user_path(@user.id), class: 'btn btn-default'  %>
 				<div class="post">
 					<h2>New book</h2>
 					<%= form_for(@book) do |f| %>
@@ -58,13 +58,15 @@
 				</tr>
 				
 				 <tr>
-					<td><%= attachment_image_tag(@user, :profile_image, :fill, 20, 20, format: 'jpeg') %></td>
+					<td><%= attachment_image_tag(@user, :profile_image, :fill, 20, 20, format: 'jpeg') %>
+						<br><%= @user.name %>
+					</td>
 					<td><%= @book.title %></td>
 					<td><%= @book.body %></td>
-				 </tr>
-				
+				 </tr>	
 			</table>
 		</div>
 	</div>
+	<p>CopyRight Infratop.inc</p>
 </body>
 </html>

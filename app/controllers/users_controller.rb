@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   def create
   	user = User.find(params[:id])
   	book = Book.new(book_params)
-  	book.save
-  	redirect_to book_path(@book.id)
+  	if book.save
+      flash[:notice] = "You have creatad book successfully."
+  	  redirect_to book_path(@book.id)
+    end
   end
 
   def edit
@@ -22,8 +24,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "You have updated book successfully."
+      redirect_to user_path(@user.id)
+    end
   end
 
   private
