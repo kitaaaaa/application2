@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-
 <body>
-	<header>
-		<div class="container">
-			<nav class="nav-left">Bookers</nav>
-			<nav>
-				<ul class="right">
-					<li><%= link_to 'Home', user_path(@user.id) %></li>
-					<li><%= link_to 'Users', users_path %></li>
-					<li><%= link_to 'Books', books_path %></li>
-					<li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
 	<% if flash[:notice] %>
 		<div class="flash">
 			<%= flash[:notice] %>
 		</div>
 	<% end %>
 	<div class="container">
+		<div class="row">
 		<div class="col-xs-3">
 			<h2>User info</h2>
-			<%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg') %>
-			<table>
+			<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no-image.jpg", size: "100*100" %>
+			<table class="table table-striped">
 				<tbody>
 					<tr>
 					  <th>name</th>
@@ -41,10 +23,12 @@
 					</tr>
 				</tbody>
 			</table>
-				<%= link_to '編集', edit_user_path(@user.id), class: 'btn btn-default'  %>
+				<%= link_to edit_user_path(@user.id) do %>
+				<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
 				<div class="post">
 					<h2>New book</h2>
-					<%= form_for(@book) do |f| %>
+					<%= form_for(@empty) do |f| %>
 					 <p>Title</p>
 					  <%= f.text_field :title %>
 					 <p>Opinion</p>
@@ -55,7 +39,7 @@
 		</div>
 		<div class="col-xs-9">
 			<h2>Book details</h2>
-			<table>
+			<table class="table">
 				<tr>
 					<th></th>
 					<th>Title</th>
@@ -67,10 +51,9 @@
 					<td><%= @book.body %></td>
 					<td><%= link_to 'Edit', edit_book_path(@book.id) %></td>
 					<td><%= link_to 'destroy', book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
-				 </tr>
-				
+				 </tr>	
 			</table>
 		</div>
 	</div>
+	</div>
 </body>
-</html>

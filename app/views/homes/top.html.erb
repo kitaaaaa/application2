@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-
 <body>
-	<header>
-		<div class="container">
-			<nav class="nav-left">Bookers</nav>
-			<nav>
-				<ul class="right">
-					<li><%= link_to 'Home', root_path %></li>
-					<li><%= link_to 'About', 'home#about' %></li>
-					<li><%= link_to 'sign up', new_user_registration_path %></li>
-					<li><%= link_to 'login', new_user_session_path %></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
 	<div class="container">
-		<div><%= link_to 'logout', destroy_user_session_path, method: :delete %></div>
 		<h1>welcome to Bookers !!</h1>
 		<p>In Bookers,</p>
 		<p>you can share and exchange your opinions , inpressions , and emotions
@@ -28,5 +8,4 @@
 		<%= link_to 'Log in', new_user_session_path, class: 'btn btn-default' %>
 		<%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-default' %>
 	</div>
-	<footer>CopyRight Infratop.inc</footer>
 </body>
