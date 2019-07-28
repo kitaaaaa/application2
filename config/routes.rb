@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create, :index, :edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'homes#top'
-  get 'homes/about'
+  get 'home/about' => 'homes#about'
 end

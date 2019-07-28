@@ -8,10 +8,4 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..20}
   validates :introduction, length: { maximum: 50}
 
-  def email_required?
-   false
- end
- def email_changed?
-   false
- end
 end

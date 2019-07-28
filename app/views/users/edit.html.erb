@@ -5,6 +5,11 @@
 </head>
 
 <body>
+	<% if flash[:notice] %>
+	 <div class="flash">
+		<%= flash[:notice] %>
+	 </div>
+	<% end %>
 	<div class="container">
 			<h2>User info</h2>
 				<%= form_for(@user) do |f| %>

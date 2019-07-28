@@ -1,4 +1,9 @@
 <body>
+	<% if flash[:notice] %>
+		<div class="flash">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
 	<div class="container">
 		<h1>welcome to Bookers !!</h1>
 		<p>In Bookers,</p>

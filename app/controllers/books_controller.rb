@@ -1,4 +1,13 @@
 class BooksController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
+  
+  def ensure_correct_user
+    # ログイン中のユーザーidと編集したいユーザーidが等しくない場合
+    if current_user.id != params[:id].to_i
+      redirect_to books_path
+    end
+  end
+
   def index
   	@books = Book.all
     @book = Book.new
@@ -7,7 +16,6 @@ class BooksController < ApplicationController
 
   def show
   	@book = Book.find(params[:id])
-    @user = current_user
     @empty = Book.new 
   end
 

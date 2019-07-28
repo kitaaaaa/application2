@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+    before_action :ensure_correct_user, only: [:edit, :update]
+  def ensure_correct_user
+    if current_user.id != params[:id].to_i
+      redirect_to user_path(current_user.id)
+    end 
+  end
+
   def show
   	@user = User.find(params[:id])
   	@book = Book.new
@@ -26,6 +33,9 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "You have updated book successfully."
       redirect_to user_path(@user.id)
+    else
+      flash[:notice] = "error"
+      render :edit
     end
   end
 
